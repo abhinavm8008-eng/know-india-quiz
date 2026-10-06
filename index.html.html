@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Know India Quiz 2026 | Official Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --saffron: #e65100;
+      --saffron-bright: #ff6f00;
+      --green: #1b5e20;
+      --green-bright: #2e7d32;
+      --navy: #0c2340;
+      --gold: #d4af37;
+      --crimson: #8b0000;
+      --bg-cream: #fffdf7;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --text-dark: #1f2937;
+      --text-muted: #556070;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* --- ENHANCED HIGH-CONCENTRATION TIRANGA BACKGROUND --- */
+    body {
+      background: 
+        /* Traditional motif overlay */
+        url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%3C%23d4af37%3E' fill-opacity='0.2'%3E%3Cpath d='M60 0 L68 15 L85 15 L72 26 L78 42 L60 32 L42 42 L48 26 L35 15 L52 15 Z'/%3E%3Ccircle cx='60' cy='60' r='18' stroke='%3C%230c2340%3E' stroke-width='1.5' stroke-opacity='0.2' fill='none'/%3E%3Cpath d='M60 48 C66 48 72 54 72 60 C72 66 66 72 60 72 C54 72 48 66 48 60 C48 54 54 48 60 48 Z' stroke='%3C%231b5e20%3E' stroke-width='1.5' stroke-opacity='0.2' fill='none'/%3E%3C/g%3E%3C/svg%3E"),
+        /* Vibrant & Concentrated Tiranga Gradient (Rich Saffron -> Pure White -> Deep India Green) */
+        linear-gradient(180deg, 
+          #ff9933 0%, 
+          #ffb366 22%, 
+          #ffffff 50%, 
+          #66bb6a 78%, 
+          #138808 100%
+        );
+      background-attachment: fixed;
+      color: var(--text-dark);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* --- STICKY HEADER & NAVIGATION --- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 4px solid var(--saffron-bright);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .logo-circle-sm {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      box-shadow: 0 4px 12px rgba(230, 81, 0, 0.25);
+      object-fit: cover;
+      background: #ffffff;
+    }
+
+    .brand-title {
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: 0.5px;
+    }
+
+    nav {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .nav-btn {
+      background: none;
+      border: none;
+      padding: 10px 16px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-dark);
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover, .nav-btn.active {
+      background: rgba(255, 111, 0, 0.12);
+      color: var(--saffron);
+    }
+
+    .nav-btn.highlight {
+      background: linear-gradient(135deg, var(--saffron-bright) 0%, var(--saffron) 100%);
+      color: white;
+      box-shadow: 0 4px 14px rgba(230, 81, 0, 0.35);
+    }
+
+    .nav-btn.highlight:hover {
+      transform: translateY(-1px);
+    }
+
+    /* --- PAGE SECTIONS --- */
+    .page {
+      display: none;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px;
+      min-height: calc(100vh - 180px);
+      animation: fadeIn 0.35s ease-in-out;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* --- HERO SECTION --- */
+    .hero {
+      text-align: center;
+      padding: 30px 16px 50px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(8px);
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      margin-bottom: 30px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .hero-logo-frame {
+      display: inline-block;
+      position: relative;
+      padding: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--saffron-bright), var(--gold), var(--green-bright));
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+      margin-bottom: 24px;
+    }
+
+    .hero-logo {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #ffffff;
+      display: block;
+      border: 4px solid #ffffff;
+    }
+
+    .hero h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 40px;
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--saffron);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin: 30px 0 40px;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      padding: 24px;
+      border-radius: 18px;
+      border-top: 5px solid var(--saffron-bright);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      border-left: 1px solid rgba(212, 175, 55, 0.2);
+      border-right: 1px solid rgba(212, 175, 55, 0.2);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      text-align: center;
+    }
+
+    .stat-card h3 {
+      font-size: 28px;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .stat-card p {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* --- SECTION TITLES & CARDS --- */
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 32px;
+      color: var(--navy);
+      margin-bottom: 28px;
+      text-align: center;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '❖';
+      display: block;
+      font-size: 16px;
+      color: var(--saffron);
+      margin-top: 6px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 24px;
+    }
+
+    /* BASE CARD STYLING */
+    .card {
+      background: var(--card-bg);
+      border-radius: 18px;
+      border: 1.5px solid rgba(212, 175, 55, 0.35);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--saffron-bright), var(--gold), var(--green-bright));
+      z-index: 3;
+    }
+
+    .card-banner-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .card-body {
+      padding: 24px;
+      flex-grow: 1;
+    }
+
+    .card h3 {
+      color: var(--navy);
+      margin-bottom: 10px;
+      font-size: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card p {
+      color: var(--text-dark);
+      font-size: 15px;
+      font-weight: 500;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* --- FEATURED GALLERY / HERO CAROUSEL --- */
+    .india-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .gallery-item {
+      position: relative;
+      height: 160px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid var(--gold);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 8px 12px;
+      background: linear-gradient(0deg, rgba(12, 35, 64, 0.9) 0%, rgba(12, 35, 64, 0) 100%);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* --- BACKGROUND IMAGE CARDS WITH ZOOM TRANSITION --- */
+    .bg-card {
+      position: relative;
+      min-height: 280px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1.5px solid rgba(212, 175, 55, 0.35);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+      cursor: pointer;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .bg-card .card-img-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      z-index: 0;
+    }
+
+    .bg-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.95) 100%);
+      transition: background 0.4s ease;
+      z-index: 1;
+    }
+
+    .bg-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(12, 35, 64, 0.2);
+    }
+
+    .bg-card:hover .card-img-layer {
+      transform: scale(1.12);
+    }
+
+    .bg-card:hover::after {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.88) 100%);
+    }
+
+    /* HD India Images for Syllabus */
+    .card-history .card-img-layer {
+      background-image: url('https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80');
+    }
+
+    .card-art .card-img-layer {
+      background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80');
+    }
+
+    .card-geography .card-img-layer {
+      background-image: url('https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80');
+    }
+
+    .card-science .card-img-layer {
+      background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80');
+    }
+
+    .card-culture .card-img-layer {
+      background-image: url('https://images.unsplash.com/photo-1514222709107-a180c68d72b4?auto=format&fit=crop&w=800&q=80');
+    }
+
+    .notice-box {
+      background: #fff8e1;
+      border: 1.5px solid #ffe082;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-top: 24px;
+      font-size: 14.5px;
+      color: #795548;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    /* --- SCHEDULE STYLING --- */
+    .rounds-container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .round-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2px solid rgba(212, 175, 55, 0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .round-card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .round-card-body {
+      padding: 28px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .round-badge {
+      background: linear-gradient(135deg, var(--saffron-bright), var(--saffron));
+      color: white;
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      font-weight: 800;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+      box-shadow: 0 6px 16px rgba(230, 81, 0, 0.3);
+    }
+
+    .round-badge.final {
+      background: linear-gradient(135deg, var(--navy), #1e3a8a);
+      box-shadow: 0 6px 16px rgba(12, 35, 64, 0.3);
+    }
+
+    .round-info h3 {
+      font-size: 22px;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .round-tag {
+      display: inline-block;
+      background: #e8f5e9;
+      color: var(--green-bright);
+      font-weight: 700;
+      font-size: 12.5px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+
+    .round-tag.zoom {
+      background: #e3f2fd;
+      color: #1565c0;
+    }
+
+    .round-info p {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    /* --- REGISTER PAGE --- */
+    .register-wrapper {
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    iframe {
+      width: 100%;
+      height: 700px;
+      border: none;
+      border-radius: 24px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+      background: #ffffff;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      background: var(--navy);
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 14px;
+      margin-top: 60px;
+      border-top: 4px solid var(--gold);
+    }
+
+    footer p {
+      opacity: 0.88;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .nav-container { flex-direction: column; gap: 12px; }
+      nav { flex-wrap: wrap; justify-content: center; }
+      .hero h1 { font-size: 30px; }
+      .round-card-body { flex-direction: column; text-align: center; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION HEADER -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand" onclick="showPage('home')">
+        <img src="C:\Users\shiva\OneDrive\india qiz logo.png" alt="Know India Quiz Logo" class="logo-circle-sm">
+        <span class="brand-title">Know India Quiz 2026</span>
+      </a>
+      <nav>
+        <button class="nav-btn active" onclick="showPage('home')">Home</button>
+        <button class="nav-btn" onclick="showPage('about')">About</button>
+        <button class="nav-btn" onclick="showPage('syllabus')">Syllabus</button>
+        <button class="nav-btn" onclick="showPage('schedule')">Schedule</button>
+        <button class="nav-btn" onclick="showPage('faq')">FAQ</button>
+        <button class="nav-btn highlight" onclick="showPage('register')">Register Now</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE 1: HOME -->
+  <div id="home" class="page active">
+    <div class="hero">
+      <div class="hero-logo-frame">
+        <img src="C:\Users\shiva\OneDrive\india qiz logo.png" alt="Know India Quiz 2026 Logo" class="hero-logo">
+      </div>
+      <h1>Know India Quiz 2026</h1>
+      <p class="hero-subtitle">Explore • Learn • Celebrate</p>
+      <p class="hero-desc">Discover the splendor of India's classical artforms, freedom legacy, geographic wonders, and scientific triumphs in a thrilling national online quiz competition.</p>
+      <button class="nav-btn highlight" style="padding: 14px 36px; font-size: 16px; border-radius: 12px;" onclick="showPage('register')">Register for Quiz</button>
+      
+      <!-- India Visual Highlights -->
+      <div class="india-gallery">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80" alt="Taj Mahal Heritage">
+          <div class="gallery-caption">Iconic Heritage</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=600&q=80" alt="Indian Classical Dance">
+          <div class="gallery-caption">Classical Performing Arts</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1506461883276-594a12b11cf3?auto=format&fit=crop&w=600&q=80" alt="Varanasi Ghats">
+          <div class="gallery-caption">Culture & Traditions</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1532375810709-75b1da00537c?auto=format&fit=crop&w=600&q=80" alt="Indian Tricolor Flag">
+          <div class="gallery-caption">National Pride</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>2 Rounds</h3>
+        <p>Online Prelims & Zoom Final</p>
+      </div>
+      <div class="stat-card">
+        <h3>Top 6</h3>
+        <p>Qualify for Live Zoom Finale</p>
+      </div>
+      <div class="stat-card">
+        <h3>E-Certificates</h3>
+        <p>Digital Certificates for All Participants</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 2: ABOUT -->
+  <div id="about" class="page">
+    <h2 class="section-title">About the Competition</h2>
+    <div class="card-grid">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=80" alt="Indian Monument" class="card-banner-img">
+        <div class="card-body">
+          <h3>Our Mission</h3>
+          <p>The Know India Quiz 2026 is designed to foster pride and curiosity about India's diverse heritage, rich artforms, historical milestones, and modern advancements among students nationwide.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=800&q=80" alt="Himalayas India" class="card-banner-img">
+        <div class="card-body">
+          <h3>Eligibility</h3>
+          <p>Open to school and institution students across India. Participants register individually using a valid Gmail account with fast OTP verification.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1608889175123-8ee362201f81?auto=format&fit=crop&w=800&q=80" alt="Indian Art & Craft" class="card-banner-img">
+        <div class="card-body">
+          <h3>Official Digital E-Certificates</h3>
+          <p>All verified participants who complete the Online Prelims will receive an official Digital E-Certificate of Participation. Finalists receive E-Certificates of Merit.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 3: SYLLABUS -->
+  <div id="syllabus" class="page">
+    <h2 class="section-title">Quiz Syllabus & Topics</h2>
+    <div class="card-grid">
+      
+      <div class="card bg-card card-history">
+        <div class="card-img-layer"></div>
+        <h3>1. Indian History & Freedom Movement</h3>
+        <p>Revolutionaries, freedom struggle timeline, ancient kingdoms, and architectural heritage.</p>
+      </div>
+
+      <div class="card bg-card card-art">
+        <div class="card-img-layer"></div>
+        <h3>2. Classical & Folk Artforms</h3>
+        <p>Traditional paintings (Madhubani, Warli, Tanjore), classical dances, music, and handicraft traditions.</p>
+      </div>
+
+      <div class="card bg-card card-geography">
+        <div class="card-img-layer"></div>
+        <h3>3. Geography & Natural Wonders</h3>
+        <p>Rivers, mountain ranges, national parks, UNESCO heritage sites, and climate diversity.</p>
+      </div>
+
+      <div class="card bg-card card-science">
+        <div class="card-img-layer"></div>
+        <h3>4. Science, ISRO & Defence</h3>
+        <p>India's space exploration missions, scientific achievements, innovators, and technological milestones.</p>
+      </div>
+
+      <div class="card bg-card card-culture">
+        <div class="card-img-layer"></div>
+        <h3>5. Culture, Literature & Current Affairs</h3>
+        <p>Indian epics, famous authors, national symbols, modern sports achievements, and civic knowledge.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PAGE 4: SCHEDULE -->
+  <div id="schedule" class="page">
+    <h2 class="section-title">Competition Schedule</h2>
+    <div class="rounds-container">
+      
+      <div class="round-card">
+        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1000&q=80" alt="Online Competition" class="round-card-img">
+        <div class="round-card-body">
+          <div class="round-badge">R1</div>
+          <div class="round-info">
+            <span class="round-tag">Online Speed Round</span>
+            <h3>Round 1: Online Prelims</h3>
+            <p>An interactive, timed online quiz accessible from any browser. Test your quick thinking across history, culture, and general knowledge. All eligible participants score here to earn their official E-Certificate.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="round-card">
+        <img src="https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?auto=format&fit=crop&w=1000&q=80" alt="Zoom Live Finale" class="round-card-img">
+        <div class="round-card-body">
+          <div class="round-badge final">R2</div>
+          <div class="round-info">
+            <span class="round-tag zoom">Live on Zoom • Top 6 Qualifiers</span>
+            <h3>Round 2: Grand Finale on Zoom</h3>
+            <p>The top 6 highest-scoring participants from Round 1 qualify for the live interactive Grand Finale conducted on Zoom. Compete live in buzzer rounds, visual rounds, and rapid-fire questions!</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="notice-box" style="margin-top: 32px;">
+      <span>📜 <strong>Certification:</strong> E-Certificates will be automatically generated and sent directly to registered Gmail addresses following the completion of the competition.</span>
+    </div>
+  </div>
+
+  <!-- PAGE 5: REGISTER -->
+  <div id="register" class="page">
+    <h2 class="section-title">Participant Registration</h2>
+    <div class="register-wrapper">
+      <iframe 
+        src="https://script.google.com/macros/s/AKfycbxepfvjdanf2sU2e1lwsBdyethrgByz-8LFrOn9GFXFchg7eLapBhEPgdGZQxRKcvkP/exec"
+        title="Know India Quiz 2026 Registration Portal"
+        allow="fullscreen">
+      </iframe>
+    </div>
+  </div>
+
+  <!-- PAGE 6: FAQ & CONTACT -->
+  <div id="faq" class="page">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="card-grid">
+      
+      <div class="card">
+        <div class="card-body">
+          <h3>How many rounds are in the quiz?</h3>
+          <p>There are exactly 2 rounds: Round 1 is the Online Prelims, and the Top 6 participants move to Round 2 (Grand Finale on Zoom).</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h3>How will I join the Zoom Finale if I qualify?</h3>
+          <p>The top 6 scorers from Round 1 will receive a direct email with the Zoom meeting link and instructions for the live finale.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h3>Is registration free?</h3>
+          <p>Yes! Registration is 100% free for all students.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 Know India Quiz Committee. All rights reserved. | Explore • Learn • Celebrate</p>
+  </footer>
+
+  <!-- SPA NAVIGATION SCRIPT -->
+  <script>
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+
+      const targetPage = document.getElementById(pageId);
+      if (targetPage) {
+        targetPage.classList.add('active');
+      }
+
+      const activeBtn = Array.from(document.querySelectorAll('.nav-btn')).find(
+        btn => btn.getAttribute('onclick') === `showPage('${pageId}')`
+      );
+      if (activeBtn && !activeBtn.classList.contains('highlight')) {
+        activeBtn.classList.add('active');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
